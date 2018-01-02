@@ -32,6 +32,7 @@ public class DownloadFilesFromURL {
 		String url = null;
 		for(int i=0; i<countries.size(); i++) {
 			for(int j=0; j<statistics.size(); j++) {
+				// Fetch data from Url .
 				url = urlPattern + statistics.get(j) + "/" + date + "/" +countries.get(i) + ".txt";
 				try {
 					downloadUsingStream(url,"region/"+countries.get(i)+"/", statistics.get(j) + ".txt");
@@ -54,6 +55,8 @@ public class DownloadFilesFromURL {
 	
 	        File file = new File(directoryName, fileName);
 	        
+	        // Create file and  download the data.
+	        
 				file.createNewFile();
 			
 	        bis = new BufferedInputStream(new URL(urlStr).openStream());
@@ -69,6 +72,7 @@ public class DownloadFilesFromURL {
 			e.printStackTrace();
 		} finally {
 	        try {
+	        	// close the FileOutputStream object
 				fos.close();
 				bis.close();
 			} catch (IOException e) {

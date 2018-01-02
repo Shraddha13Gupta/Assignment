@@ -34,15 +34,12 @@ public class DataParsing {
 		{
 			for (int j=0; j<paramsList.size(); j++)
 			{
+				//create a file called weather.csv and put data in formatted way
 				String fileName = "region/" + countryList.get(i) +"/" + paramsList.get(j)+ fileExtension;
-				System.out.println(fileName);
-				System.out.println("Shraddha Country"+countryList.get(i));
-				System.out.println("Shraddha Params"+paramsList.get(j));
 				FileWriter fileWriter = null;
 				fileWriter = new FileWriter("weather.csv");
 				fileWriter.append(FILE_HEADER.toString());
 				fileWriter.append(NEW_LINE_SEPARATOR);
-				//try (BufferedReader br = new BufferedReader(new FileReader(new File("region/England/Tmin.txt")))) {
 				try (BufferedReader br = new BufferedReader(new FileReader(new File(fileName)))) {
 					String line;
 					int lineNo = 0;
@@ -61,11 +58,7 @@ public class DataParsing {
 								line = line.replace("      ", "   N/A ");
 							}
 							
-							//String[] data = line.split("(?<=\\S\\s)");
 							List<String> data = new ArrayList<String>(Arrays.asList(line.split("(?<=\\S\\s)")));
-							
-							//List<String> list = new ArrayList<String>(Arrays.asList(split));
-							//Arrays.asList(city.split("::"));
 							String year = data.get(0).trim();
 							int count = data.size();
 							
@@ -80,12 +73,9 @@ public class DataParsing {
 							System.out.println(line);
 							for(int k=1; k<data.size(); k++) {
 								
-								fileWriter.append(countryList.get(i));
-								/*System.out.println("Shraddha Country 1"+countryList.get(i));*/
-								
+								fileWriter.append(countryList.get(i).toString());
 								fileWriter.append(COMMA_DELIMITER);
-								fileWriter.append(paramsList.get(j));
-								/*System.out.println("Shraddha Params 1"+paramsList.get(j));*/
+								fileWriter.append(paramsList.get(j).toString());
 								fileWriter.append(COMMA_DELIMITER);
 								fileWriter.append(year.trim());
 								fileWriter.append(COMMA_DELIMITER);
